@@ -1,4 +1,7 @@
 .profile__author {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     font-size: 42px;
     font-weight: 500;
     line-height: 48px;
@@ -8,10 +11,12 @@
     height: 39px;
     transition: all 0.5s ease-out;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 600px) {
     .profile__author {
-          margin-right: 10px;
+          margin-right: 0;
           margin-left: 0;
+          margin-top: 26px;
+          margin-bottom: 14px;
           font-size: 27px;
           line-height: 33px;
           text-align: center;

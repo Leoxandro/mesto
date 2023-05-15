@@ -13,10 +13,8 @@
 .popup__btn_action_close:hover {
     opacity: .6;
 }
-.popup__btn_action_close:focus {
-    opacity: .6;
-}
-@media screen and (max-width: 320px) {
+
+@media screen and (max-width: 400px) {
     .popup__btn_action_close {
             width: 20px;
             height: 20px;

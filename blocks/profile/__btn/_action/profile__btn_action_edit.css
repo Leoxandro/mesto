@@ -16,8 +16,8 @@
 @media screen and (max-width: 767px) {
     .profile__btn_action_edit {
           position: absolute;
-          top: 8px;
-          right: 50px;
+          top: 9px;
+          right: 46px;
           width: 18px;
           height: 18px;
           margin-bottom: 0;

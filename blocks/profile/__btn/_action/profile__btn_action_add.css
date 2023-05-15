@@ -12,7 +12,13 @@
 .profile__btn_action_add:hover {
     opacity: 0.6;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1080px) {
+    .profile__btn_action_add {
+            width: 50%;
+        }
+}
+
+@media screen and (max-width: 600px) {
     .profile__btn_action_add {
             width: 100%;
         }

@@ -1,6 +1,6 @@
 .popup__btn_action_submit {
     height: 50px;
-    margin-top: 48px;
+    margin-top: 0px;
     font-size: 18px;
     font-weight: normal;
     line-height: 22px;
@@ -13,12 +13,12 @@
 .popup__btn_action_submit:hover {
     background-color: rgba(0, 0, 0, 0.8); 
   }
-.popup__btn_action_submit:focus {
-    background-color: rgba(0, 0, 0, 0.8);
-  }
+
 @media screen and (max-height: 320px) {
     .popup__btn_action_submit {
             height: 46px;
             margin-top: 10px;
+            font-size: 14px;
+            line-height: 17px;
         }
 }

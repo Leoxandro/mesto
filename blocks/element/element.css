@@ -4,7 +4,7 @@
     height: 362px;
     background-color: #fff;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1080px) {
     .element {
             height: 361px;
         }

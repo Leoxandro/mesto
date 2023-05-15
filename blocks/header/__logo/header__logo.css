@@ -4,7 +4,8 @@
     min-height: 33px;
     transition: all 0.5s ease-in-out;
 }
-@media screen and (max-width: 767px) {
+
+@media screen and (max-width: 400px) {
     .header__logo {
           max-width: 104px;
           min-height: 25px;
