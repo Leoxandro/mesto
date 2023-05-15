@@ -1,0 +1,10 @@
+.popup__heading {
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 29px;
+    letter-spacing: 0em;
+    margin: 0px 64px 40px 36px;
+    color: #000;
+    align-self: center;
+    width: 330px;
+}

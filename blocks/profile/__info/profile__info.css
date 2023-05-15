@@ -1,0 +1,18 @@
+.profile__info {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-end;
+    text-align: left;
+    width: 336px;
+    height: 73px;
+}
+@media screen and (max-width: 767px) {
+    .profile__info {
+          display: block;
+          overflow: visible;
+          min-width: 0;
+          text-align: center;
+          height: 26px;
+        }
+}
