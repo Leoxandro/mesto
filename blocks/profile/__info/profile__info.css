@@ -2,17 +2,19 @@
     position: relative;
     display: flex;
     flex-flow: row nowrap;
-    align-items: flex-end;
+    align-items: center;
+    justify-content: center;
     text-align: left;
     width: 336px;
     height: 73px;
 }
 @media screen and (max-width: 767px) {
     .profile__info {
-          display: block;
           overflow: visible;
           min-width: 0;
           text-align: center;
           height: 42px;
+          width: 282px;
+          margin-top: 22px;
         }
 }

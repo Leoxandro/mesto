@@ -10,12 +10,6 @@
     transition: all 0.5s ease-in-out;
     margin-bottom: 0;
 }
-@media screen and (max-width: 1080px) {
-    .header {
-          min-height: 56px;
-          margin: 45px 0;
-        }
-}
 
 @media screen and (max-width: 600px) {
     .header {

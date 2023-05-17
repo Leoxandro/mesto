@@ -7,13 +7,22 @@
     transition: all 0.5s ease-out;
 }
 
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 1279px) {
+    .elements {
+            grid-template-columns: repeat(2, 282px);
+            justify-self: center;
+            justify-content: center;
+        }
+}
+
+@media screen and (max-width: 700px) {
     .elements {
             grid-template-columns: repeat(2, 282px);
             margin: 36px auto;
             justify-self: center;
         }
 }
+
 @media screen and (max-width: 600px) {
     .elements {
             grid-template-columns: repeat(1, 282px);
