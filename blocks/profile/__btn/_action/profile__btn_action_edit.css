@@ -13,7 +13,7 @@
 .profile__btn_action_edit:hover {
     opacity: 0.6;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1279px) {
     .profile__btn_action_edit {
           min-width: 18px;
           min-height: 18px;

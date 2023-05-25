@@ -11,6 +11,7 @@
     .elements {
             grid-template-columns: repeat(2, 282px);
             justify-self: center;
+            margin: 51px auto;
             justify-content: center;
         }
 }

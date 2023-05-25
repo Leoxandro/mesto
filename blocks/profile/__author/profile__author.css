@@ -11,10 +11,11 @@
     transition: all 0.5s ease-out;
     text-align: center;
 }
-@media screen and (max-width: 600px) {
+
+
+@media screen and (max-width: 1279px) {
     .profile__author {
           margin: 0;
-          margin-left: 26px;
           margin-top: 4px;
           font-size: 27px;
           line-height: 33px;

@@ -8,7 +8,7 @@
     width: 336px;
     height: 73px;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1279px) {
     .profile__info {
           overflow: visible;
           min-width: 0;
