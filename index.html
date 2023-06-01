@@ -27,48 +27,7 @@
             </section>
 
             <section class="elements">
-                <div class="element">
-                    <img class="element__img" src="./images/карачаевск.jpg" alt="карачаевск">
-                    <div class="element__group">
-                        <h2 class="element__name">Карачаевск</h2>
-                        <button type="button" class="element__like-btn" title="кнопка 'лайк'"></button>
-                    </div>
-                </div>
-                <div class="element">
-                    <img class="element__img" src="./images/гора эльбрус.png" alt="гора эльбрус">
-                    <div class="element__group">
-                        <h2 class="element__name">Гора Эльбрус</h2>
-                        <button type="button" class="element__like-btn" title="кнопка 'лайк'"></button>
-                    </div>
-                </div>
-                <div class="element">
-                    <img class="element__img" src="./images/домбай.png" alt="домбай">
-                    <div class="element__group">
-                        <h2 class="element__name">Домбай</h2>
-                        <button type="button" class="element__like-btn" title="кнопка 'лайк'"></button>
-                    </div>
-                </div>
-                <div class="element">
-                    <img class="element__img" src="./images/гора эльбрус.png" alt="гора эльбрус">
-                    <div class="element__group">
-                        <h2 class="element__name">Гора Эльбрус</h2>
-                        <button type="button" class="element__like-btn" title="кнопка 'лайк'"></button>
-                    </div>
-                </div>
-                <div class="element">
-                    <img class="element__img" src="./images/домбай.png" alt="домбай">
-                    <div class="element__group">
-                        <h2 class="element__name">Домбай</h2>
-                        <button type="button" class="element__like-btn" title="кнопка 'лайк'"></button>
-                    </div>
-                </div>
-                <div class="element">
-                    <img class="element__img" src="./images/карачаевск.jpg" alt="карачаевск">
-                    <div class="element__group">
-                        <h2 class="element__name">Карачаево-Черкессия</h2>
-                        <button type="button" class="element__like-btn" title="кнопка 'лайк'"></button>
-                    </div>
-                </div>
+
             </section>
         </main>
         <footer class="footer">
@@ -76,7 +35,7 @@
         </footer>
 
         <!-- Profile edit popup -->
-        <div class="popup">
+        <div class="popup popup__edit">
             <div class="popup__container">    
                 <button type="button" title="Закрыть окно без сохранения" class="popup__btn popup__btn_action_close"></button>    
                 <h2 class="popup__heading">Редактировать профиль</h2>
@@ -87,11 +46,50 @@
                     <label class="popup__field">
                         <input type="text" id="info" name="info" class="popup__item popup__item_type_info" placeholder="О себе" required>
                     </label>
-                    <button type="submit" title="Сохранить данные и закрыть окно" class="popup__btn popup__btn_action_submit">Сохранить</button>
+                    <button type="submit" title="Сохранить данные и закрыть окно" class="popup__btn popup__btn-edit-info popup__btn_action_submit">Сохранить</button>
                 </form>
             </div>
         </div>
+
+        <!-- Add card popup -->
+
+        <div class="popup popup__add">
+            <div class="popup__container">    
+                <button type="button" title="Закрыть окно без сохранения" class="popup__btn popup__btn_action_close"></button>    
+                <h2 class="popup__heading">Новое Место</h2>
+                <form class="popup__form" name="edit-profile">
+                    <label class="popup__field">
+                        <input type="text" id="name" name="name" class="popup__item popup__item_type_place" placeholder="Название" required>
+                    </label>
+                    <label class="popup__field">
+                        <input type="text" id="info" name="photo link" class="popup__item popup__item_type_link" placeholder="Ссылка на страницу" required>
+                    </label>
+                    <button type="submit" title="Сохранить данные и закрыть окно" class="popup__btn popup__btn-add-card popup__btn_action_submit">Сохранить</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Fullscreen photo popup -->
+
+        <div class="popup popup__photo">
+            <div class="popup__container popup__photo-container">    
+                <button type="button" title="Закрыть окно без сохранения" class="popup__btn popup__btn_action_close popup__btn_action_close_img"></button> 
+                <img class="popup__img" alt="" src="">
+                <p class="popup__description"></p>
+            </div>
+        </div>
+
     </root>
+    <template id="card__template">    
+        <div class="element">
+            <img class="element__img" alt="" src="">
+            <button type="button" class="element__delete-btn" title="кнопка удаления"></button>
+            <div class="element__group">
+                <h2 class="element__name"></h2>
+                <button type="button" class="element__like-btn" title="кнопка 'лайк'"></button>
+            </div>
+        </div>
+    </template>
     <script src="./scripts/index.js"></script>
 </body>
 </html>
