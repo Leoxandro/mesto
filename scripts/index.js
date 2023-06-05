@@ -60,24 +60,14 @@ closeBtns.forEach(function(button){
 });
 
 // Функция открытия попапов
-function openPopup(arg) {
-  switch (arg) {
-   case 1:
-    popupEditWin.classList.add("popup_opened");
-    break;
-   case 2: 
-    popupAddWin.classList.add('popup_opened');
-    break;
-   case 3:
-    popupFullScreen.classList.add('popup_opened');
-    break;
-  }
-};
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+} 
 
 // Открыть/Закрыть "Попап" редактирования профиля
 
 editBtn.addEventListener('click', function() {
-  openPopup(1);
+  openPopup(popupEditWin);
   popupNameInput.value = nameInput.textContent;
   popupDescriptionInput.value = descriptionInput.textContent;
 });
@@ -98,35 +88,52 @@ submitInfoBtn.addEventListener("click", function(event) {
 
 
 function createCard(card) {
-    const templateContent = template.content.cloneNode(true);
-    const element = templateContent.querySelector('.element');
-    const image = templateContent.querySelector('.element__img');
-    const name = templateContent.querySelector('.element__name');
-    const deleteBtn = templateContent.querySelector('.element__delete-btn');
-    const likeBtn = templateContent.querySelector('.element__like-btn');
+  const templateContent = template.content.cloneNode(true);
+  const element = templateContent.querySelector('.element');
+  const image = templateContent.querySelector('.element__img');
+  const name = templateContent.querySelector('.element__name');
+  const deleteBtn = templateContent.querySelector('.element__delete-btn');
+  const likeBtn = templateContent.querySelector('.element__like-btn');
 
-    image.src = card.link;
-    image.alt = card.name;
-    name.textContent = card.name;
+  image.src = card.link;
+  image.alt = card.name;
+  name.textContent = card.name;
 
-    deleteBtn.addEventListener('click', function(){
-        element.remove();
+  function setCardListeners() {
+    deleteBtn.addEventListener('click', function () {
+      element.remove();
     });
 
-    likeBtn.addEventListener('click', function() {
+    likeBtn.addEventListener('click', function () {
       likeBtn.classList.toggle('active');
     });
-
-    return templateContent;
   }
 
-    function renderCard(card) {
-      const newCard = createCard(card);
-      elementContainer.prepend(newCard);
-  }
-  
-  initialCards.forEach(function(card) {
-    renderCard(card);
+  setCardListeners();
+
+  return templateContent;
+}
+
+function renderCard(card) {
+  const newCard = createCard(card);
+  const image = newCard.querySelector('.element__img');
+
+  image.addEventListener('click', function (event) {
+    openPopup(popupFullScreen);
+    const imageSrc = event.target.src;
+    const imageDescription = event.target.alt;
+
+    popupImage.src = imageSrc;
+    popupImage.alt = imageDescription;
+    popupDescription.textContent = imageDescription;
+  });
+
+  elementContainer.prepend(newCard);
+  closePopup(popupAddWin);
+}
+
+initialCards.forEach(function (card) {
+  renderCard(card);
 });
 
 
@@ -134,7 +141,7 @@ function createCard(card) {
 
 
 addBtn.addEventListener("click", function() {
-    openPopup(2);
+    openPopup(popupAddWin);
 });
 
 submitNewCardBtn.addEventListener('click', function(event){
@@ -143,7 +150,6 @@ submitNewCardBtn.addEventListener('click', function(event){
   const card = {
       link: popupLinkInput.value,
       name: popupPlaceInput.value,
-      alt: popupPlaceInput.value
   };
 
   renderCard(card);
@@ -163,24 +169,3 @@ likeBtns.forEach(function(like) {
         like.classList.toggle('active');
     });
 });
-
-
-// Открыть фото на весь экран
-
-function fullScreen() {
-
-  const imgInitial = document.querySelectorAll('.element__img');
-  imgInitial.forEach(function(event) {
-      event.addEventListener('click', function(img) {
-          openPopup(3);
-          const imageSrc = img.target.src;
-          const imageDescription = img.target.alt;
-
-          popupImage.src = imageSrc;
-          popupImage.alt = imageDescription;
-          popupDescription.textContent = imageDescription;
-      });
-  });
-};
-
-fullScreen();
