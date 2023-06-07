@@ -107,29 +107,24 @@ function createCard(card) {
     likeBtn.addEventListener('click', function () {
       likeBtn.classList.toggle('active');
     });
+
+    image.addEventListener('click', function (event) {
+      openPopup(popupFullScreen);
+      const imageSrc = event.target.src;
+      const imageDescription = event.target.alt;
+  
+      popupImage.src = imageSrc;
+      popupImage.alt = imageDescription;
+      popupDescription.textContent = imageDescription;
+    });
   }
-
   setCardListeners();
-
   return templateContent;
 }
 
 function renderCard(card) {
   const newCard = createCard(card);
-  const image = newCard.querySelector('.element__img');
-
-  image.addEventListener('click', function (event) {
-    openPopup(popupFullScreen);
-    const imageSrc = event.target.src;
-    const imageDescription = event.target.alt;
-
-    popupImage.src = imageSrc;
-    popupImage.alt = imageDescription;
-    popupDescription.textContent = imageDescription;
-  });
-
   elementContainer.prepend(newCard);
-  closePopup(popupAddWin);
 }
 
 initialCards.forEach(function (card) {
@@ -156,16 +151,5 @@ submitNewCardBtn.addEventListener('click', function(event){
 
   popupLinkInput.value = '';
   popupPlaceInput.value = ''; 
-  fullScreen();
   closePopup(popupAddWin);
-});
-
-
-// Поставить лайк
-
-const likeBtns = document.querySelectorAll('.element__like-btn');
-likeBtns.forEach(function(like) {
-    like.addEventListener('click', function() {
-        like.classList.toggle('active');
-    });
 });
