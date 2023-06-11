@@ -36,46 +36,56 @@
 
         <!-- Profile edit popup -->
         <div class="popup popup-edit">
-            <div class="popup__container">    
-                <button type="button" title="Закрыть окно без сохранения" class="popup__btn popup__btn_action_close"></button>    
-                <h2 class="popup__heading">Редактировать профиль</h2>
-                <form class="popup__form" name="edit-profile">
-                    <label class="popup__field">
-                        <input type="text" id="name" name="name" class="popup__item popup__item_type_name" placeholder="Ваше имя" required>
-                    </label>
-                    <label class="popup__field">
-                        <input type="text" id="info" name="info" class="popup__item popup__item_type_info" placeholder="О себе" required>
-                    </label>
-                    <button type="submit" title="Сохранить данные и закрыть окно" class="popup__btn popup__btn-edit-info popup__btn_action_submit">Сохранить</button>
-                </form>
+            <div class="popup__overlay">
+                <div class="popup__container">    
+                    <button type="button" title="Закрыть окно без сохранения" class="popup__btn popup__btn_action_close"></button>    
+                    <h2 class="popup__heading">Редактировать профиль</h2>
+                    <form class="popup__form" name="edit-profile" novalidate>
+                        <label class="popup__field">
+                            <input type="text" id="name" name="name" class="popup__item popup__item_type_name" placeholder="Ваше имя" required minlength="2" maxlength="40">
+                            <span class="name-input-error popup__input-error"></span>
+                        </label>
+                        <label class="popup__field">
+                            <input type="text" id="info" name="info" class="popup__item popup__item_type_info" placeholder="О себе" required minlength="2" maxlength="200">
+                            <span class="description-input-error popup__input-error"></span>
+                        </label>
+                        <button type="submit" title="Сохранить данные и закрыть окно" class="popup__btn popup__btn-edit-info popup__btn_action_submit">Сохранить</button>
+                    </form>
+                </div>
             </div>
         </div>
 
         <!-- Add card popup -->
 
         <div class="popup popup-add">
-            <div class="popup__container">    
-                <button type="button" title="Закрыть окно без сохранения" class="popup__btn popup__btn_action_close"></button>    
-                <h2 class="popup__heading">Новое Место</h2>
-                <form class="popup__form" name="edit-profile">
-                    <label class="popup__field">
-                        <input type="text" id="place" name="name" class="popup__item popup__item_type_place" placeholder="Название" required>
-                    </label>
-                    <label class="popup__field">
-                        <input type="text" id="link" name="photo link" class="popup__item popup__item_type_link" placeholder="Ссылка на страницу" required>
-                    </label>
-                    <button type="submit" title="Сохранить данные и закрыть окно" class="popup__btn popup__btn-add-card popup__btn_action_submit">Сохранить</button>
-                </form>
+            <div class="popup__overlay">
+                <div class="popup__container">    
+                    <button type="button" title="Закрыть окно без сохранения" class="popup__btn popup__btn_action_close"></button>    
+                    <h2 class="popup__heading">Новое Место</h2>
+                    <form class="popup__form" name="edit-profile">
+                        <label class="popup__field">
+                            <input type="text" id="place" name="place" class="popup__item popup__item_type_place" placeholder="Название" required minlength="2" maxlength="30">
+                            <span class="place-input-error popup__input-error"></span>
+                        </label>
+                        <label class="popup__field">
+                            <input type="url" id="link" name="link" class="popup__item popup__item_type_link" placeholder="Ссылка на страницу" required>
+                            <span class="link-input-error popup__input-error"></span>
+                        </label>
+                        <button type="submit" title="Сохранить данные и закрыть окно" class="popup__btn popup__btn-add-card popup__btn_action_submit">Сохранить</button>
+                    </form>
+                </div>
             </div>
         </div>
 
         <!-- Fullscreen photo popup -->
 
         <div class="popup popup-photo">
-            <div class="popup__container popup__photo-container">    
-                <button type="button" title="Закрыть окно без сохранения" class="popup__btn popup__btn_action_close popup__btn_action_close-img"></button> 
-                <img class="popup__img" alt="">
-                <p class="popup__description"></p>
+            <div class="popup__overlay">
+                <div class="popup__container popup__photo-container">    
+                    <button type="button" title="Закрыть окно без сохранения" class="popup__btn popup__btn_action_close popup__btn_action_close-img"></button> 
+                    <img class="popup__img" alt="">
+                    <p class="popup__description"></p>
+                </div>
             </div>
         </div>
 
@@ -91,5 +101,6 @@
         </div>
     </template>
     <script src="./scripts/index.js"></script>
+    <script src='./scripts/validate.js'></script>
 </body>
 </html>
