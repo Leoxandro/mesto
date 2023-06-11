@@ -1,11 +1,7 @@
- function enableValidation(settings) {
+function enableValidation(settings) {
     const formList = Array.from(document.querySelectorAll(settings.formSelector));
   
     formList.forEach((formElement) => {
-      formElement.addEventListener('submit', (evt) => {
-        evt.preventDefault();
-      });
-  
       setEventListeners(formElement, settings);
     });
   }
@@ -61,23 +57,12 @@
     }
   }
   
-  // Валидация формы "Редактировать профиль"
+  // Валидация формы
   enableValidation({
-    formSelector: '.popup-edit .popup__form',
+    formSelector: '.popup__form',
     inputSelector: '.popup__item',
-    submitButtonSelector: '.popup__btn-edit-info',
+    submitButtonSelector: '.popup__btn_action_submit',
     inactiveButtonClass: 'popup__btn_action_submit_disabled',
     inputErrorClass: 'popup__item_type_error',
     errorClass: 'popup__input-error_visible'
   });
-  
-  // Валидация формы "Новое место"
-  enableValidation({
-    formSelector: '.popup-add .popup__form',
-    inputSelector: '.popup__item',
-    submitButtonSelector: '.popup__btn-add-card',
-    inactiveButtonClass: 'popup__btn_action_submit_disabled',
-    inputErrorClass: 'popup__item_type_error',
-    errorClass: 'popup__input-error_visible'
-  });
-  

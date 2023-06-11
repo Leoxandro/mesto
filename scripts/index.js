@@ -17,7 +17,6 @@ const template = document.querySelector('#card__template');
 const elementContainer = document.querySelector('.elements');
 const popupImage = document.querySelector('.popup__img');
 const popupDescription = document.querySelector('.popup__description');
-const overlayClick = document.querySelectorAll('.popup__overlay');
 
 const initialCards = [
     {
@@ -50,47 +49,42 @@ const initialCards = [
 
 // Функция закрытия попапов
 function closePopup(popup) {
-    popup.classList.remove("popup_opened");
+  popup.classList.remove("popup_opened");
+  document.removeEventListener('keydown', closeByEsc);
 }
 
-closeBtns.forEach(function(button){
-  button.addEventListener('click', function(){
+function closeByEsc(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
+
+closeBtns.forEach(function (button) {
+  button.addEventListener('click', function () {
     const popup = button.closest('.popup');
     closePopup(popup);
   });
 });
 
-
 // Функция закрытия попапов через оверлэй
 
-function isPopupOpened() {
-  return document.querySelector('.popup_opened') !== null;
-}
-
-overlayClick.forEach(function(overlay) {
-  overlay.addEventListener('click', function(event) {
-    if (isPopupOpened() && !event.target.closest('.popup__container')) {
-      const openedPopup = event.target.closest('.popup_opened');
-      closePopup(openedPopup);
+document.querySelectorAll('.popup').forEach(popup => {
+  popup.addEventListener('mousedown', function(evt) {
+    if (evt.target.classList.contains('popup')) { 
+      closePopup(popup);
     }
   });
 });
 
-// Обработчик события для закрытия попапа через кнопку ESC
-document.addEventListener('keydown', function(event) {
-  if (event.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened');
-    if (openedPopup) {
-      closePopup(openedPopup);
-    }
-  }
-});
-
 
 // Функция открытия попапов
+
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-} 
+  document.addEventListener('keydown', closeByEsc);
+}
+
 
 // Открыть/Закрыть "Попап" редактирования профиля
 
@@ -178,7 +172,11 @@ submitNewCardBtn.addEventListener('click', function(event){
   renderCard(card);
 
   popupLinkInput.value = '';
-  popupPlaceInput.value = ''; 
+  popupPlaceInput.value = '';
+
+  event.currentTarget.classList.add('popup__btn_action_submit_disabled');
+  event.currentTarget.disabled = true;
+
   closePopup(popupAddWin);
 });
 

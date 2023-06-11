@@ -32,7 +32,6 @@
 @import url(../blocks/popup/__photo/popup__photo.css);
 @import url(../blocks/popup/__input-error/popup__input-error.css);
 @import url(../blocks/popup/__input-error/_action/popup__input-error_visible.css);
-@import url(../blocks/popup/__overlay/popup__overlay.css);
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__author-description/profile__author-description.css);
 @import url(../blocks/profile/__author/profile__author.css);
