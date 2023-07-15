@@ -1,3 +1,5 @@
+import Card from './modules/Card.js';
+import FormValidator from './modules/FormValidator.js';
 
 const popupNameInput = document.querySelector(".popup__item_type_name");
 const popupDescriptionInput = document.querySelector(".popup__item_type_info");
@@ -13,7 +15,6 @@ const submitInfoBtn = document.querySelector(".popup__btn-edit-info");
 const submitNewCardBtn = document.querySelector('.popup__btn-add-card');
 const nameInput = document.querySelector(".profile__author");
 const descriptionInput = document.querySelector(".profile__author-description");
-const template = document.querySelector('#card__template');
 const elementContainer = document.querySelector('.elements');
 const popupImage = document.querySelector('.popup__img');
 const popupDescription = document.querySelector('.popup__description');
@@ -107,46 +108,36 @@ submitInfoBtn.addEventListener("click", function(event) {
 
 // Появление стандартных изображений на странице при загрузке
 
-
-
 function createCard(card) {
-  const templateContent = template.content.cloneNode(true);
-  const element = templateContent.querySelector('.element');
-  const image = templateContent.querySelector('.element__img');
-  const name = templateContent.querySelector('.element__name');
-  const deleteBtn = templateContent.querySelector('.element__delete-btn');
-  const likeBtn = templateContent.querySelector('.element__like-btn');
-
-  image.src = card.link;
-  image.alt = card.name;
-  name.textContent = card.name;
-
-  function setCardListeners() {
-    deleteBtn.addEventListener('click', function () {
-      element.remove();
-    });
-
-    likeBtn.addEventListener('click', function () {
-      likeBtn.classList.toggle('active');
-    });
-    image.addEventListener('click', function (event) {
-      openPopup(popupFullScreen);
-      const imageSrc = event.target.src;
-      const imageDescription = event.target.alt;
+  const newCard = new Card(
+    card,
+    '#card__template',
+    handleCardClick,
+    handleDeleteClick,
+    handleLikeCard
+  );
   
-      popupImage.src = imageSrc;
-      popupImage.alt = imageDescription;
-      popupDescription.textContent = imageDescription;
-    });
-  }
-  setCardListeners();
-  return templateContent;
+  return newCard.generate();
 }
 
+function handleCardClick(name, link) {
+  openPopup(popupFullScreen);
+  popupImage.src = link;
+  popupImage.alt = name;
+  popupDescription.textContent = name;
+}
+
+function handleDeleteClick(card) {
+  card.deleteCard();
+}
+
+function handleLikeCard(card) {
+  card.toggleLike();
+}
 
 function renderCard(card) {
-  const newCard = createCard(card);
-  elementContainer.prepend(newCard);
+  const newCardElement = createCard(card);
+  elementContainer.prepend(newCardElement);
 }
 
 initialCards.forEach(function (card) {
@@ -180,4 +171,22 @@ submitNewCardBtn.addEventListener('click', function(event){
   closePopup(popupAddWin);
 });
 
+// Инициализация валидации форм
+
+const settings = {
+  inputSelector: '.popup__item',
+  submitButtonSelector: '.popup__btn',
+  inactiveButtonClass: 'popup__btn_action_submit_disabled',
+  inputErrorClass: 'popup__item_type_error',
+  errorClass: 'popup__item-error_active'
+};
+
+const formEditProfile = document.querySelector('.popup__container-edit');
+const formAddCard = document.querySelector('.popup__container-add');
+
+const formValidatorEditProfile = new FormValidator(settings, formEditProfile);
+const formValidatorAddCard = new FormValidator(settings, formAddCard);
+
+formValidatorEditProfile.enableValidation();
+formValidatorAddCard.enableValidation();
 
