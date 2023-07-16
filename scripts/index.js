@@ -11,13 +11,14 @@ const popupEditWin = document.querySelector('.popup-edit');
 const popupAddWin = document.querySelector('.popup-add');
 const popupFullScreen = document.querySelector('.popup-photo');
 const closeBtns = document.querySelectorAll('.popup__btn_action_close');
-const submitInfoBtn = document.querySelector(".popup__btn-edit-info");
-const submitNewCardBtn = document.querySelector('.popup__btn-add-card');
 const nameInput = document.querySelector(".profile__author");
 const descriptionInput = document.querySelector(".profile__author-description");
 const elementContainer = document.querySelector('.elements');
 const popupImage = document.querySelector('.popup__img');
 const popupDescription = document.querySelector('.popup__description');
+const addForm = popupAddWin.querySelector('.popup__form');
+const editForm = popupEditWin.querySelector('.popup__form');
+
 
 const initialCards = [
     {
@@ -98,7 +99,7 @@ editBtn.addEventListener('click', function() {
 
 // Внести изменения в профиль
 
-popupEditWin.addEventListener("submit", function(event) {
+editForm.addEventListener("submit", function(event) {
   event.preventDefault();
   nameInput.textContent = popupNameInput.value;
   descriptionInput.textContent = popupDescriptionInput.value;
@@ -152,7 +153,7 @@ addBtn.addEventListener("click", function() {
     openPopup(popupAddWin);
 });
 
-popupAddWin.addEventListener('submit', function(event){
+addForm.addEventListener('submit', function(event){
   event.preventDefault();
 
   const card = {
