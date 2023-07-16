@@ -98,7 +98,7 @@ editBtn.addEventListener('click', function() {
 
 // Внести изменения в профиль
 
-submitInfoBtn.addEventListener("click", function(event) {
+popupEditWin.addEventListener("submit", function(event) {
   event.preventDefault();
   nameInput.textContent = popupNameInput.value;
   descriptionInput.textContent = popupDescriptionInput.value;
@@ -152,7 +152,7 @@ addBtn.addEventListener("click", function() {
     openPopup(popupAddWin);
 });
 
-submitNewCardBtn.addEventListener('click', function(event){
+popupAddWin.addEventListener('submit', function(event){
   event.preventDefault();
 
   const card = {
@@ -165,8 +165,8 @@ submitNewCardBtn.addEventListener('click', function(event){
   popupLinkInput.value = '';
   popupPlaceInput.value = '';
 
-  event.currentTarget.classList.add('popup__btn_action_submit_disabled');
-  event.currentTarget.disabled = true;
+
+  formValidatorAddCard.disableSubmitButton();
 
   closePopup(popupAddWin);
 });
@@ -177,16 +177,15 @@ const settings = {
   inputSelector: '.popup__item',
   submitButtonSelector: '.popup__btn',
   inactiveButtonClass: 'popup__btn_action_submit_disabled',
-  inputErrorClass: 'popup__item_type_error',
-  errorClass: 'popup__item-error_active'
+  inputErrorClass: '.popup__input-error',
+  errorClass: 'popup__input-error_visible'
 };
 
-const formEditProfile = document.querySelector('.popup__container-edit');
-const formAddCard = document.querySelector('.popup__container-add');
+const formEditProfile = popupEditWin.querySelector('.popup__form');
+const formAddCard = popupAddWin.querySelector('.popup__form');
 
 const formValidatorEditProfile = new FormValidator(settings, formEditProfile);
 const formValidatorAddCard = new FormValidator(settings, formAddCard);
 
 formValidatorEditProfile.enableValidation();
 formValidatorAddCard.enableValidation();
-
