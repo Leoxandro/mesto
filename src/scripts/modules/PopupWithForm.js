@@ -1,0 +1,36 @@
+import { Popup } from "./Popup";
+
+class PopupWithForm extends Popup {
+    constructor(popupSelector , { callbackFormSubmit }) {
+        super(popupSelector);
+        this._callbackFormSubmit = callbackFormSubmit;
+        this._popupFormItem = this._popupItem.querySelector('.popup__form');
+        this._inputList = Array.from(this._popupFormItem.querySelectorAll('.popup__item'));
+        this._sendButton = this._popupItem.querySelector('.popup__btn_action_submit');
+        this._sendButtonText = this._sendButton.textContent;
+    }
+
+    _getInputValues() {
+        const formValues = {};
+        this._inputList.forEach(inputItem => {
+            formValues[inputItem.name] = inputItem.value;
+        });
+        return formValues;
+    }
+
+    setEventListeners() {
+        super.setEventListeners();
+        this._popupFormItem.addEventListener('submit', (evt) => {
+          evt.preventDefault();
+          this._callbackFormSubmit(this._getInputValues());
+        });
+      }
+
+      close() {
+        super.close();
+        this._popupFormItem.reset();
+      }
+}
+
+
+export { PopupWithForm };

@@ -1,4 +1,4 @@
-export default class Card {
+export class Card {
     constructor(card, cardTemplate, handleCardClick, handleDeleteClick, handleLikeCard) {
         this._handleDeleteClick = handleDeleteClick;
         this._handleCardClick = handleCardClick;
@@ -6,7 +6,7 @@ export default class Card {
         this._cardTemplate = cardTemplate;
         this._name = card.name;
         this._link = card.link;
-        this._isLike = false;
+        this._isLiked = false;
         this._id = card._id;
     }
 
@@ -31,27 +31,27 @@ export default class Card {
     }
 
     toggleLike() {
-        this._elementsItemLike.classList.toggle('active');
+        this._isLiked = !this._isLiked;
+        this._elementsItemLike.classList.toggle("active", !this._isLiked);
     }
-    
+
     deleteCard() {
         this._cardBody.remove();
     }
     
-    _handleImageClick() {
+    handleImageClick() {
         this._handleCardClick(this._name, this._link);
     }
     
-    _setEventListener = () => {
+    _setEventListener() {
         if (this._deleteElement) {
             this._deleteElement.addEventListener('click', () => this._handleDeleteClick(this));
         }
-    
+
         if (this._elementsItemLike) {
             this._elementsItemLike.addEventListener('click', () => this._handleLikeCard(this));
         }
 
-        this._imageItem.addEventListener('click', () => this._handleImageClick());
+        this._imageItem.addEventListener('click', () => this.handleImageClick());
     }
 }
-
