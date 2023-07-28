@@ -125,7 +125,9 @@ function handleDeleteClick(card) {
 
 function handleLikeCard(card) {
   card.toggleLike();
+  console.log(card);
 }
+
 
 // Появление стандартных изображений на странице при загрузке
 function createCard(card) {

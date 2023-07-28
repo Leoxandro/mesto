@@ -19,7 +19,6 @@ export class Card {
         this._card.querySelector('.element__name').textContent = this._name;
         this._imageItem.setAttribute('src', this._link);
         this._imageItem.setAttribute('alt', this._name);
-        this._setEventListener();
         return this._card;
     }
     
@@ -32,7 +31,7 @@ export class Card {
 
     toggleLike() {
         this._isLiked = !this._isLiked;
-        this._elementsItemLike.classList.toggle("active", !this._isLiked);
+        this._elementsItemLike.classList.toggle('active');
     }
 
     deleteCard() {
