@@ -4,10 +4,8 @@ class Section {
       this._container = document.querySelector(items);
     }
 
-    renderItems(data) {
-      data.forEach((item) => {
-        this._renderer(item)
-      });
+    renderItems(res) {
+      res.forEach(this._renderer);
     }
 
     addItem(cardElement) {

@@ -8,6 +8,8 @@
 @import url(../blocks/element/__like-btn/element__like-btn.css);
 @import url(../blocks/element/__delete-btn/element__delete-btn.css);
 @import url(../blocks/element/__name/element__name.css);
+@import url(../blocks/element/__like-counter/element_like-counter.css);
+@import url(../blocks/element/__like-area/element__like-area.css);
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__logo/footer__logo.css);
@@ -35,6 +37,8 @@
 @import url(../blocks/profile/__author-description/profile__author-description.css);
 @import url(../blocks/profile/__author/profile__author.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__avatar-edit/profile__avatar-edit.css);
+@import url(../blocks/profile/__avatar-area/profile__avatar-area.css);
 @import url(../blocks/profile/__btn/profile__btn.css);
 @import url(../blocks/profile/__btn/_action/profile__btn_action_add.css);
 @import url(../blocks/profile/__btn/_action/profile__btn_action_edit.css);

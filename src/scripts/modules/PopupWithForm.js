@@ -13,7 +13,7 @@ class PopupWithForm extends Popup {
     _getInputValues() {
         const formValues = {};
         this._inputList.forEach(inputItem => {
-            formValues[inputItem.name] = inputItem.value;
+            formValues[inputItem.id] = inputItem.value;
         });
         return formValues;
     }
@@ -24,12 +24,20 @@ class PopupWithForm extends Popup {
           evt.preventDefault();
           this._callbackFormSubmit(this._getInputValues());
         });
-      }
+    }
 
-      close() {
+    btnSavingLabel() {
+      this._sendButton.textContent = 'Сохранение...';
+    }
+
+    btnDefaultLabel() {
+      this._sendButton.textContent = this._sendButtonText;
+    }
+
+    close() {
         super.close();
         this._popupFormItem.reset();
-      }
+    }
 }
 
 
