@@ -91,22 +91,21 @@ const renderCard = function(cardObj) {
       cardId: cardObj._id,
       authorId: cardObj.owner._id,
     }, 
-    {
-      handleCardClick: (name, link) => { popupWithImage.open(name, link) },
-      handleCardDelete: (cardElement, cardId) => { popupConfirmDel.open(cardElement, cardId) },
-      handleLikeCard: (cardId) => { api.putCardLike(cardId)
+    (name, link) => { popupWithImage.open(name, link) },
+    (cardElement, cardId) => { popupConfirmDel.open(cardElement, cardId) },
+    (cardId) => { api.putCardLike(cardId)
         .then((res) => {
           newCard.renderCardLike(res);
         })
         .catch((err) => { console.log(`При лайке карточки возникла ошибка, ${err}`) })
       },
-      handleDislikeCard: (cardId) => { api.deleteCardLike(cardId)
+    (cardId) => { api.deleteCardLike(cardId)
         .then((res) => {
           newCard.renderCardLike(res);
         })
         .catch((err) => { console.log(`При дизлайке карточки возникла ошибка, ${err}`) })
       },
-    });
+  );
   return newCard.generate();
 }
 

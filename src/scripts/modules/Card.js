@@ -43,7 +43,7 @@ export class Card {
 
     _toggleLike = () => {
       this._likedCard() 
-        ? this._removeLike(this_.cardId)
+        ? this._removeLike(this._cardId)
         : this._putLike(this._cardId);
     };
     
@@ -53,7 +53,7 @@ export class Card {
         if (this._likeArea.length === 0) {
           this.likeCounter.textContent = '';
         } else {
-          this.likeCounter.textContent = this._likeArea.length.toString();
+          this.likeCounter.textContent = this._likeArea.length;
         }
         if (this._likedCard()) {
           this._elementsItemLike.classList.add('active');
@@ -81,6 +81,5 @@ export class Card {
         } else {
         this._deleteElement.remove();
         }
-        console.log("Is liked:", this._likedCard());
     }
 }
