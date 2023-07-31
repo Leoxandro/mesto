@@ -8,10 +8,9 @@ import FormValidator from '../scripts/modules/FormValidator.js';
 import { Api } from '../scripts/modules/Api.js';
 import { apiLink } from '../scripts/utils/apiLink.js';
 import {
-  popupNameInput, popupDescriptionInput, popupPlaceInput,
-  popupLinkInput, editBtn, addBtn,
-  popupEditWin, popupAddWin, closeBtns,
-  editForm, settings, formAddCard, formEditProfile,
+  popupNameInput, popupDescriptionInput,
+  editBtn, addBtn,
+  settings, formAddCard, formEditProfile,
   avatarArea, avatarBtn, avatarImg, formAvatar, popupAvatarWin
 } from '../scripts/utils/constants.js';
 import './index.css';
@@ -34,11 +33,15 @@ const userInfo = new UserInfo({
 });
 
 
-Promise.all([ api.getUserData(), api.getInitialCards() ]).then(([ userProfileData, card ]) => {
-  userId = userProfileData._id;
-  userInfo.setUserInfo({ username: userProfileData.name, description: userProfileData.about });
-  renderInitialCards.renderItems(card.reverse());
-  userInfo.setUserAvatar(userProfileData.avatar);
+Promise.all([ api.getUserData(), api.getInitialCards() ])
+  .then(([ userProfileData, card ]) => {
+    userId = userProfileData._id;
+    userInfo.setUserInfo({ 
+      username: userProfileData.name,
+      description: userProfileData.about
+     });
+    renderInitialCards.renderItems(card);
+    userInfo.setUserAvatar(userProfileData.avatar);
 })
 .catch((err) => { console.log(`Возникла глобальная ошибка, ${err}`) })
 
@@ -79,27 +82,27 @@ addBtn.addEventListener("click", function() {
 
 // Объявление функции для добавления карточки
 
-function renderCard(card) {
+const renderCard = function(cardObj) {
   const newCard = new Card(
-    card,
-    '#card-template', 
+    cardObj,
+    '#card__template', 
     userId, 
     { 
-      cardId: card._id,
-      authorId: card.owner._id,
+      cardId: cardObj._id,
+      authorId: cardObj.owner._id,
     }, 
     {
-      handleCardClick: (name, image) => { popupWithImage.open(name, image) },
+      handleCardClick: (name, link) => { popupWithImage.open(name, link) },
       handleCardDelete: (cardElement, cardId) => { popupConfirmDel.open(cardElement, cardId) },
       handleLikeCard: (cardId) => { api.putCardLike(cardId)
         .then((res) => {
-          cardItem.renderCardLike(res);
+          newCard.renderCardLike(res);
         })
         .catch((err) => { console.log(`При лайке карточки возникла ошибка, ${err}`) })
       },
       handleDislikeCard: (cardId) => { api.deleteCardLike(cardId)
         .then((res) => {
-          cardItem.renderCardLike(res);
+          newCard.renderCardLike(res);
         })
         .catch((err) => { console.log(`При дизлайке карточки возникла ошибка, ${err}`) })
       },
@@ -110,8 +113,8 @@ function renderCard(card) {
 //  Создание экземпляра класса Section для отображения карточек на странице
 
 const renderInitialCards = new Section({
-  renderer: (card) => {
-    renderInitialCards.addItem(renderCard(card));
+  renderer: (cardObj) => {
+    renderInitialCards.addItem(renderCard(cardObj));
   }
 }, '.elements');
 
@@ -124,7 +127,8 @@ popupWithImage.setEventListeners();
 // Объявление popup редактирования аватара
 
 const popupEditAvatar = new PopupWithForm('.popup-avatar-change', {
-  callbackFormSubmit: (userProfileData) => { popupEditAvatar.btnSavingLabel(); api.sendAvatarData(userProfileData)
+  callbackFormSubmit: (userProfileData) => { popupEditAvatar.btnSavingLabel();
+     api.sendAvatarData(userProfileData)
       .then((res) => {
         userInfo.setUserAvatar(res.avatar);
         popupEditAvatar.close();
@@ -153,7 +157,9 @@ popupConfirmDel.setEventListeners();
 // Объявление popup редактирования профиля
 
 const popupEditProfile = new PopupWithForm('.popup-edit', {
-  callbackFormSubmit: (userProfileData) => { popupEditProfile.btnSavingLabel(); api.sendUserData(userProfileData)
+  callbackFormSubmit: (userProfileData) => { 
+    popupEditProfile.btnSavingLabel();
+    api.sendUserData(userProfileData)
       .then((res) => {
         userInfo.setUserInfo({ username: res.name, description: res.about });
         popupEditProfile.close();
@@ -169,9 +175,11 @@ popupEditProfile.setEventListeners();
 // Объявление popup добавления новой карточки
 
 const popupAddCard = new PopupWithForm('.popup-add', {
-  callbackFormSubmit: (formValues) => { popupAddCard.btnSavingLabel(); api.addNewCard({ name: formValues.placename, link: formValues.placeimage })
+  callbackFormSubmit: (formValues) => { 
+    popupAddCard.btnSavingLabel();
+    api.addNewCard({ name: formValues.place, link: formValues.link })
       .then((card) => {
-        renderInitialCards.addItem(renderCard(card));
+        renderInitialCards.addItem(renderCard(card));;
         popupAddCard.close();
       })
       .catch((err) => { console.log(`При добавлении новой карточки возникла ошибка, ${err}`) })

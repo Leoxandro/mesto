@@ -7,8 +7,7 @@ class Api {
 
     getUserData() {
       return fetch(`${this._link}users/me`, {
-        headers: this._headers,
-        method: "GET"
+        headers: this._headers
       })
         .then(res => { return this._processingServerResponse(res); })
     }
@@ -25,8 +24,7 @@ class Api {
 
     getInitialCards() {
       return fetch(`${this._link}cards`, {
-        headers: this._headers,
-        method: "GET"
+        headers: this._headers
       })
         .then(res => { return this._processingServerResponse(res); })
     }
@@ -55,7 +53,10 @@ class Api {
       return fetch(`${this._link}users/me`, {
         headers: this._headers,
         method: 'PATCH',
-        body: JSON.stringify({ name: profileData.username, about: profileData.description })
+        body: JSON.stringify({ 
+          name: profileData.name, 
+          about: profileData.description 
+        })
       })
         .then(res => { return this._processingServerResponse(res); })
     }
